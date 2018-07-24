@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
+import React from 'react';
+import Book from './Book';
 
-export default class List extends Component {
-  render() {
-    return (
-      <div>
-        <ul>
-          <li>asd</li>
-        </ul>
-      </div>
-    )
-  }
-}
+const BookList = ({ books, onDelete }) => (
+  <ul className="book__list">
+  { books.map( book =>
+    <li id={book.id} key={book.id} className="book__item">
+      <Book {...book} onDelete={onDelete} />
+    </li>)}
+  </ul>
+);
+
+export default BookList;

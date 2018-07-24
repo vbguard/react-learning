@@ -1,11 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react';
 
-export default class SearchBar extends Component {
-  render() {
-    return (
-      <from>
+const SearchBar = ({ value, onChange }) => (
+  <div className="book__search search">
+    <p className="search__title">Filter books by title</p>
+    <input className="search__input" type="text" value={value} onChange={onChange} />
+  </div>
+);
 
-      </from>
-    )
-  }
-}
+export default SearchBar;

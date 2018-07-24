@@ -1,36 +1,39 @@
 import React, { Component } from 'react';
 import v4 from 'uuid/v4';
+import Books from './backend/books.json';
 import SearchBar from './SearchBar';
 import BookEditor from './BookEditor';
 import BookList from './BookList';
-import Books from './Book';
 import { getVisibleBooks } from './services/selector';
 
-console.log(v4());
+const getDataBooks = Books;
 export default class App extends Component {
   state = {
-    books: Books,
+    books: getDataBooks,
     filter: '',
   };
 
-  addBook = data => {
+  addBook = ({title, descr, img, author}) => {
     const book = {
       id: v4(),
-      author: '',
-      descr: '',
-      img: '',
-      title: '',
+      author: author,
+      descr: descr,
+      img: img,
+      title: title,
     };
 
     this.setState(prevState => ({
       books: [book, ...prevState.books],
     }));
+    console.log('after add new books: ', this.state.books);
   };
 
-  deleteBook = id => {
+  deleteBook = evt => {
+    const id = evt.target.value;
+
     this.setState(prevState => ({
       books: prevState.books.filter( book => book.id !== id ),
-    }))
+    }));
   };
 
   changeFilter = evt => {
@@ -40,14 +43,14 @@ export default class App extends Component {
   render() {
     const { books, filter } = this.state;
 
-    const visibleBooks = getVisibleBooks(books, filter);
+    const visibleBook = getVisibleBooks(books, filter);
 
     return (
-      <div>
+      <section className="book wrapper">
         <SearchBar value={filter} onChange={this.changeFilter} />
         <BookEditor onSubmit={this.addBook} />
-        <BookList  books={visibleBooks} onDelete={this.deleteNote} />
-      </div>
+        <BookList  books={visibleBook} onDelete={this.deleteBook} />
+      </section>
     )
   }
 }
