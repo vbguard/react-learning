@@ -28,9 +28,7 @@ export default class App extends Component {
     console.log('after add new books: ', this.state.books);
   };
 
-  deleteBook = evt => {
-    const id = evt.target.value;
-
+  deleteBook = id => {
     this.setState(prevState => ({
       books: prevState.books.filter( book => book.id !== id ),
     }));

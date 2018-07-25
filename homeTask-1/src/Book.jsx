@@ -7,8 +7,7 @@ const Book = ({id, title, img, author, descr, onDelete}) => (
     <h3 className="card__author">Author: {author}</h3>
     <p className="card__descr">{descr}</p>
     <button className="card__btn"
-          value={id}
-          onClick={onDelete}>
+          onClick={()=>{onDelete(id)}}>
           Delete
     </button>
   </div>
