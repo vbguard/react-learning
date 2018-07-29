@@ -23,18 +23,14 @@ export default class BookEditor extends Component {
   handleSubmit = evt => {
     evt.preventDefault();
 
-    if (this.state.title.trim() === '') return;
-    if (this.state.author.trim() === '') return;
-    if (this.state.img.trim() === '') return;
-    if (this.state.descr.trim() === '') return;
-
     this.props.onSubmit(this.state);
 
     this.setState({
       title: '',
       author: '',
       img: '',
-      descr: ''
+      descr: '',
+      validForm: true
     });
   };
 
@@ -107,7 +103,7 @@ export default class BookEditor extends Component {
         </label>
         <button
           className={validForm ? 'form__btn--disabled':'form__btn--active'} disabled={validForm} >
-           add book
+          add book
         </button>
       </form>
     );

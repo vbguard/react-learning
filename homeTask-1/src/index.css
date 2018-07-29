@@ -164,6 +164,7 @@ img {
 .editor input {
   font-size: 18px;
   line-height: 1.7;
+  outline: #424242;
 }
 
 .form__btn--active {
