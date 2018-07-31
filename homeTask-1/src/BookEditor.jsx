@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 export default class BookEditor extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       title: '',
       author: '',
@@ -18,12 +19,30 @@ export default class BookEditor extends Component {
 
   handleChange = evt => {
     this.setState({ [evt.target.name]: evt.target.value });
+    const checkedHaveText = this.state.title.length > 0
+      && this.state.author.length > 1
+      && this.state.descr.length > 1
+      && this.state.img.length > 1;
+
+    if( evt.target.value.length > 0 ) {
+      this.setState({ [evt.target.name + 'Valid']: true});
+     }
+
+    if (checkedHaveText) {
+      this.setState({ validForm: false });
+
+    }
+    if (!checkedHaveText) {
+      this.setState({ validForm: true });
+    }
   };
 
   handleSubmit = evt => {
     evt.preventDefault();
 
     this.props.onSubmit(this.state);
+
+    console.log(this.props);
 
     this.setState({
       title: '',
@@ -42,27 +61,8 @@ export default class BookEditor extends Component {
      };
      if( target.value.length > 0 ) {
       this.setState({ [target.name + 'Valid']: true});
-      this.validForm();
      }
   };
-
-  validForm = () => {
-    const boolenValidInput = this.state.titleValid
-    && this.state.imgValid
-    && this.state.authorValid
-    && this.state.descrValid;
-
-    console.log('booleValInp: ',boolenValidInput);
-
-    const valueAllIntput = this.state.title.length > 0
-    && this.state.img.length > 0
-    && this.state.author.length > 0;
-
-    console.log('value all inp: ',valueAllIntput);
-    if ( boolenValidInput && valueAllIntput ) {
-        this.setState({ validForm: false });
-      }
-  }
 
   render() {
     const { title, author, img, descr, titleValid, authorValid, imgValid, descrValid, validForm } = this.state;

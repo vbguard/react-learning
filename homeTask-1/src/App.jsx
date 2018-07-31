@@ -6,26 +6,26 @@ import BookEditor from './BookEditor';
 import BookList from './BookList';
 import { getVisibleBooks } from './services/selector';
 
-const getDataBooks = Books;
+// const getDataBooks = Books;
 export default class App extends Component {
   state = {
-    books: getDataBooks,
+    books: Books,
     filter: '',
   };
 
-  addBook = ({title, descr, img, author}) => {
+  addBook = ({title, descr, img, author, validForm}) => {
     const book = {
       id: v4(),
       author: author,
       descr: descr,
       img: img,
       title: title,
+      validForm: true
     };
 
     this.setState(prevState => ({
       books: [book, ...prevState.books],
     }));
-    console.log('after add new books: ', this.state.books);
   };
 
   deleteBook = id => {
