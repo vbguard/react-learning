@@ -143,6 +143,8 @@ img {
   padding: 0 10px;
   min-width: 250px;
   max-width: 600px;
+  max-height: 110px;
+  overflow: auto;
 }
 
 .editor {

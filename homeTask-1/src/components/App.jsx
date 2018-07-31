@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import v4 from 'uuid/v4';
-import Books from './backend/books.json';
+import Books from '../backend/books.json';
 import SearchBar from './SearchBar';
 import BookEditor from './BookEditor';
 import BookList from './BookList';
-import { getVisibleBooks } from './services/selector';
+import { getVisibleBooks } from '../services/selector';
 
 // const getDataBooks = Books;
 export default class App extends Component {
